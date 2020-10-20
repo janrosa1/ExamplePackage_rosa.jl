@@ -3,6 +3,10 @@ uuid = "2819579f-2b7c-4fb9-90ad-010b3ea0ab40"
 authors = ["janrosa1 <you@example.comjan.rosa1993@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
 [compat]
 julia = "1"
 

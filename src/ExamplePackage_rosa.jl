@@ -1,5 +1,46 @@
 module ExamplePackage_rosa
 
-# Write your package code here.
+greet() = print("Hi here is my package!")
+
+
+using LinearAlgebra, ForwardDiff
+
+
+function newtonroot(f,f_prime;x_0,tol = 1E-7, maxiter = 1000)
+    x_old=x_0
+    normdiff=Inf
+    iter=1
+    while normdiff>tol && iter<=maxiter
+        x_new= x_old - f(x_old)/f_prime(x_old)
+        normdiff=norm(x_new-x_old)
+        x_old=x_new
+        iter = iter + 1 
+    end
+    if(normdiff>tol)
+        return nothing
+    end
+
+    return (value=x_old,normdiff=normdiff,iter=iter)
+end
+    
+
+function newtonroot(f;x_0,tol = 1E-7, maxiter = 1000)
+    #find derivate of f
+    D(f) = x -> ForwardDiff.derivative(f, x)
+    f_prime=D(f)
+    x_old=x_0
+    normdiff=Inf
+    iter=1
+    while normdiff>tol && iter<=maxiter
+        x_new= x_old - f(x_old)/f_prime(x_old)
+        normdiff=norm(x_new-x_old)
+        x_old=x_new
+        iter += 1 
+    end
+    if(normdiff>tol)
+        return nothing
+    end
+    return (value=x_old,normdiff=normdiff,iter=iter)
+end
 
 end
