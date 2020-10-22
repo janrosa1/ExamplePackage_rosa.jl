@@ -1,5 +1,5 @@
 using ExamplePackage_rosa
-using Test, Polynomials
+using Test, Polynomials, Random
 
 @testset "ExamplePackage_rosa.jl" begin
     testfn(x)= (x-1)^3
@@ -44,6 +44,12 @@ using Test, Polynomials
 
     rootnc, conv, iter  = ExamplePackage_rosa.newtonroot(test_nc,x_0=1.0)
     @test rootnc==nothing
+
+    #check bigfloot
+    x0 = BigFloat(0.53)
+    root1, conv, iter  = ExamplePackage_rosa.newtonroot(testfn,x_0=x0)
+    
+    @test abs(root1-1.0)<1e-6
 
     #check for the polynomials roots
     
