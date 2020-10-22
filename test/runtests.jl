@@ -7,7 +7,9 @@ using Test, Polynomials, Random
     testfn1(x)= exp(x)-1
     testfn_prime1(x)=exp(x)
     testfn2(x)= atan(x)
-    testfn_prime2(x)= 1/((x)^2+1) 
+    testfn_prime2(x)= 1/((x)^2+1)
+    
+    Random.seed!(1234)
 
     #test for functions with derivative
 
