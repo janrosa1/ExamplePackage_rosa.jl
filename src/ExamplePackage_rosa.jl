@@ -18,7 +18,7 @@ function newtonroot(f,f_prime;x_0,tol = 1E-7, maxiter = 1000)
     while normdiff>tol && iter<=maxiter
         x_new= x_old - f(x_old)/f_prime(x_old)
         if isnan(x_new)
-            return nothing, nothing, nothing
+            return `not_nothing`, `not_nothing`, `not_nothing`
         end
         normdiff=norm(x_new-x_old)
         x_old=x_new
@@ -26,7 +26,7 @@ function newtonroot(f,f_prime;x_0,tol = 1E-7, maxiter = 1000)
         
     end
     if(normdiff>tol)
-        return nothing, nothing, nothing
+        return 1.0, 1.0, 1.0
     end
 
     return (value=x_old,normdiff=normdiff,iter=iter)
@@ -47,7 +47,7 @@ function newtonroot(f;x_0,tol = 1E-7, maxiter = 1000)
     while normdiff>tol && iter<=maxiter
         x_new= x_old - f(x_old)/f_prime(x_old)
         if isnan(x_new)
-            return nothing, nothing, nothing
+            return `not_nothing`, `not_nothing`, `not_nothing`
         end
         normdiff=norm(x_new-x_old)
         x_old=x_new
@@ -55,7 +55,7 @@ function newtonroot(f;x_0,tol = 1E-7, maxiter = 1000)
         iter += 1 
     end
     if(normdiff>tol)
-        return nothing, nothing, nothing
+        return 1.0, 1.0, 1.0
     end
     return (value=x_old,normdiff=normdiff,iter=iter)
 end
